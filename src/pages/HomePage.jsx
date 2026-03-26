@@ -9,7 +9,7 @@ export default function HomePage({isLoggedIn, handleLogout}) {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   return (
     <div >
-      <div className="mx-5 my-4">
+      <div>
         
         <h2 className="mx-5">Stay Focused, Stay Organized!</h2>
         <div className="mx-5 fs-5">Manage your daily noteswithout distractions. — all in one place.</div>

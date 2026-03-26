@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import API from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 export default function Notes() {
+  const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -22,20 +24,30 @@ export default function Notes() {
   // ================= FETCH NOTES =================
   useEffect(() => {
     fetchNotes();
-  }, []);
+  }, [navigate]);
 
   const fetchNotes = async () => {
-    try {
-      setLoading(true);
-      const res = await API.get("/note");
-      setNotes(res.data);
-    } catch {
-      alert("Failed to load notes");
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    setLoading(true);
 
+    const res = await API.get("/note");
+    setNotes(res.data);
+
+  } catch (err) {
+    if (err.response?.status === 401) {
+      // Token expired
+      localStorage.clear();
+
+      alert("Session expired. Please login again.");
+      navigate("/login");
+      return;
+    } else {
+      alert("Failed to load notes");
+    }
+  } finally {
+    setLoading(false);
+  }
+};
   // ================= OPEN MODALS =================
   const handleOpenAdd = () => {
     setCurrentNote({ _id: null, title: "", description: "" });
@@ -122,7 +134,7 @@ export default function Notes() {
           className="btn btn-dark px-4 py-2 rounded-3 shadow-sm"
           onClick={handleOpenAdd}
         >
-          + New Note
+          <i class="fa-solid fa-circle-plus"></i> New Note
         </button>
       </div>
 
@@ -176,7 +188,7 @@ export default function Notes() {
                     {preview}
                   </p>
 
-                  <div className="small text-secondary mt-3">
+                  <div className="small text-primary mt-3">
                     {new Date(n.createdAt).toLocaleDateString()}
                   </div>
                 </div>
@@ -237,14 +249,14 @@ export default function Notes() {
                   className="btn btn-outline-secondary me-2"
                   onClick={() => setShowModal(false)}
                 >
-                  Cancel
+                 <i class="fa-solid fa-xmark"></i> Cancel
                 </button>
 
                 <button
                   className="btn btn-dark px-4"
                   onClick={handleSaveNote}
                 >
-                  Save
+                 <i class="fa-solid fa-floppy-disk"></i> Save
                 </button>
               </div>
             </div>
@@ -272,10 +284,10 @@ export default function Notes() {
         {/* TITLE */}
         <div className="text-center mb-4">
           <h2 className="fw-bold mb-2">
-            {currentNote.title}
+            <i>{currentNote.title}</i>
           </h2>
 
-          <small className="text-muted">
+          <small className="text-primary">
             {new Date(currentNote.createdAt).toLocaleDateString()}
           </small>
         </div>
@@ -303,21 +315,21 @@ export default function Notes() {
             className="btn btn-outline-primary px-4 rounded-pill"
             onClick={() => handleOpenEdit(currentNote)}
           >
-            Edit
+            <i class="fa-solid fa-pen-to-square"></i> Edit
           </button>
 
           <button
             className="btn btn-outline-danger px-4 rounded-pill"
             onClick={() => handleDelete(currentNote._id)}
           >
-            Delete
+           <i class="fa-solid fa-trash-can"></i> Delete
           </button>
 
           <button
             className="btn btn-dark px-4 rounded-pill"
             onClick={() => setShowViewer(false)}
           >
-            Close
+           <i class="fa-solid fa-xmark"></i> Close
           </button>
 
         </div>
