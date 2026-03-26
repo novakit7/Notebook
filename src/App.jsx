@@ -140,10 +140,9 @@ function App() {
             path="/login"
             element={
               isLoggedIn
-                ? <Navigate to="/notes" />
+                ? <Navigate to="/notes" replace />
                 : <Login onLogin={handleLogin} />
-            }
-          />
+            }/>
 
           <Route element={<ProtectedRoutes />}>
             <Route path="/notes" element={<Notes />} />

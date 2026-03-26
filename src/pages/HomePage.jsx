@@ -12,7 +12,7 @@ export default function HomePage({isLoggedIn, handleLogout}) {
       <div>
         
         <h2 className="mx-5">Stay Focused, Stay Organized!</h2>
-        <div className="mx-5 fs-5">Manage your daily noteswithout distractions. — all in one place.</div>
+        <div className="mx-5 fs-5">Manage your daily notes without distractions. — all in one place.</div>
 
         <div className="container my-4">
           <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel" data-bs-pause="hover" data-bs-interval="3000">

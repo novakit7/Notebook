@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../api/api";
-import { useNavigate } from "react-router-dom";
 
 export default function Notes() {
-  const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -22,11 +20,12 @@ export default function Notes() {
   });
 
   // ================= FETCH NOTES =================
-  useEffect(() => {
-    fetchNotes();
-  }, [navigate]);
 
-  const fetchNotes = async () => {
+  useEffect(() => {
+  fetchNotes();
+}, []);
+
+const fetchNotes = async () => {
   try {
     setLoading(true);
 
@@ -35,19 +34,18 @@ export default function Notes() {
 
   } catch (err) {
     if (err.response?.status === 401) {
-      // Token expired
       localStorage.clear();
-
-      alert("Session expired. Please login again.");
-      navigate("/login");
+      window.location.href = "/login";
       return;
-    } else {
-      alert("Failed to load notes");
     }
+
+    alert("Failed to load notes");
+
   } finally {
     setLoading(false);
   }
 };
+
   // ================= OPEN MODALS =================
   const handleOpenAdd = () => {
     setCurrentNote({ _id: null, title: "", description: "" });
@@ -134,7 +132,7 @@ export default function Notes() {
           className="btn btn-dark px-4 py-2 rounded-3 shadow-sm"
           onClick={handleOpenAdd}
         >
-          <i class="fa-solid fa-circle-plus"></i> New Note
+          <i className="fa-solid fa-circle-plus"></i> New Note
         </button>
       </div>
 
@@ -249,14 +247,14 @@ export default function Notes() {
                   className="btn btn-outline-secondary me-2"
                   onClick={() => setShowModal(false)}
                 >
-                 <i class="fa-solid fa-xmark"></i> Cancel
+                 <i className="fa-solid fa-xmark"></i> Cancel
                 </button>
 
                 <button
                   className="btn btn-dark px-4"
                   onClick={handleSaveNote}
                 >
-                 <i class="fa-solid fa-floppy-disk"></i> Save
+                 <i className="fa-solid fa-floppy-disk"></i> Save
                 </button>
               </div>
             </div>
@@ -315,21 +313,21 @@ export default function Notes() {
             className="btn btn-outline-primary px-4 rounded-pill"
             onClick={() => handleOpenEdit(currentNote)}
           >
-            <i class="fa-solid fa-pen-to-square"></i> Edit
+            <i className="fa-solid fa-pen-to-square"></i> Edit
           </button>
 
           <button
             className="btn btn-outline-danger px-4 rounded-pill"
             onClick={() => handleDelete(currentNote._id)}
           >
-           <i class="fa-solid fa-trash-can"></i> Delete
+           <i className="fa-solid fa-trash-can"></i> Delete
           </button>
 
           <button
             className="btn btn-dark px-4 rounded-pill"
             onClick={() => setShowViewer(false)}
           >
-           <i class="fa-solid fa-xmark"></i> Close
+           <i className="fa-solid fa-xmark"></i> Close
           </button>
 
         </div>
