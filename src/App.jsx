@@ -124,7 +124,7 @@ function App() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <Navbar title="NoteBook!" isLoggedIn={isLoggedIn} />
+      <Navbar isLoggedIn={isLoggedIn} />
 
       <div className="flex-grow-1">
         <Routes>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import image from '../images/Navtitle.png'
 
-export default function Navbar({ title, isLoggedIn}) {
+export default function Navbar({isLoggedIn}) {
 
   return (
     <>
@@ -8,12 +9,9 @@ export default function Navbar({ title, isLoggedIn}) {
         <div className="container-fluid">
 
 
-          <Link className="navbar-brand fw-bold" to="/">
-            <i className="fa-solid fa-book-open me-2"></i>
-            {title}
+          <Link className="navbar-brand" to="/">
+            <img src={image} alt="Quick Notes Logo" style ={{height: "42px"}} />
           </Link>
-
-
           <button
             className="navbar-toggler"
             type="button"
@@ -30,14 +28,10 @@ export default function Navbar({ title, isLoggedIn}) {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto align-items-lg-center">
               {isLoggedIn && (
-                <>
-                  <li className="nav-item">
-                    <Link className="btn btn-dark mx-4" to="/notes">
-                      <i className="fa-solid fa-notes-medical me-1"></i>
-                      Notes
-                    </Link>
+                  <li className="nav-link text-white fw-medium">
+                    <Link className="btn btn-dark"
+                    style={{ cursor: "pointer" }}><i className="fa-solid fa-notes-medical me-1"></i>Notes</Link>
                   </li>
-                </>
               )}
 
               <li className="nav-link text-white fw-medium">
@@ -54,7 +48,6 @@ export default function Navbar({ title, isLoggedIn}) {
                   </Link>
                 )}
               </li>
-
             </ul>
           </div>
         </div>

@@ -31,16 +31,13 @@ export default function Footer() {
 
           {/* Right Side */}
           <div className="small">
-            <a
-              href="mailto:support@notebookapp.com"
-              className="text-decoration-none text-light"
-            >
-              support@notebookapp.com
-            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=admin.app.net@gmail.com&su=Quick%20Notes%20Feedback&body=Hi,%20I%20want%20to%20say..." 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-decoration-none text-light">
+            Send Feedback</a>
           </div>
-
         </div>
-
       </div>
     </footer>
   );

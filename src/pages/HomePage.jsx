@@ -8,10 +8,9 @@ import ConfirmModal from '../assets/ConfirmModal';
 export default function HomePage({isLoggedIn, handleLogout}) {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   return (
-    <div >
-      <div>
+      <div className='pt-5'>
         
-        <h2 className="mx-5">Stay Focused, Stay Organized!</h2>
+        <h2 className="mx-5">Capture Ideas Before They Disappear!</h2>
         <div className="mx-5 fs-5">Manage your daily notes without distractions. — all in one place.</div>
 
         <div className="container my-4">
@@ -46,8 +45,6 @@ export default function HomePage({isLoggedIn, handleLogout}) {
                 ) : (<Link to="/signup"className="btn btn-dark mx-5">Get Started! </Link>)}
           </div>
         </div>
-        
-      </div>
 
       <ConfirmModal
               show={showLogoutModal}
