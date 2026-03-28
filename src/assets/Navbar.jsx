@@ -29,7 +29,7 @@ export default function Navbar({isLoggedIn}) {
             <ul className="navbar-nav ms-auto align-items-lg-center">
               {isLoggedIn && (
                   <li className="nav-link text-white fw-medium">
-                    <Link className="btn btn-dark"
+                    <Link className="btn btn-dark" to = '/notes'
                     style={{ cursor: "pointer" }}><i className="fa-solid fa-notes-medical me-1"></i>Notes</Link>
                   </li>
               )}
