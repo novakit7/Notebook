@@ -7,8 +7,6 @@ export default function Navbar({isLoggedIn}) {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div className="container-fluid">
-
-
           <Link className="navbar-brand" to="/">
             <img src={image} alt="Quick Notes Logo" style ={{height: "42px"}} />
           </Link>

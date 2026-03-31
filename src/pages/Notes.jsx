@@ -273,7 +273,7 @@ const fetchNotes = async () => {
   >
     <div className="modal-dialog modal-xl modal-dialog-centered">
       <div
-        className="modal-content border-0 rounded-4 shadow-lg p-5"
+        className="modal-content border-0 rounded-4 shadow-lg p-2"
         style={{
           background: "rgba(255,255,255,0.85)",
           backdropFilter: "blur(20px)",
@@ -281,7 +281,7 @@ const fetchNotes = async () => {
       >
         {/* TITLE */}
         <div className="text-center mb-4">
-          <h2 className="fw-bold mb-2">
+          <h2 className="fw-bold mb-2 mt-4">
             <i>{currentNote.title}</i>
           </h2>
 
@@ -294,11 +294,14 @@ const fetchNotes = async () => {
         <div
           className="mx-auto"
           style={{
+            width: "100%",
             maxWidth: "900px",
-            fontSize: "1.15rem",
-            lineHeight: "2",
+            textAlign: "justify",
+            textJustify: "inter-word",
+            fontSize: "1.1rem",
+            lineHeight: "1.6",
             color: "#333",
-            whiteSpace: "pre-line",
+            whiteSpace: "pre-line", // ✅ keep user formatting
             maxHeight: "60vh",
             overflowY: "auto",
           }}
@@ -307,7 +310,7 @@ const fetchNotes = async () => {
         </div>
 
         {/* CENTERED BUTTONS */}
-        <div className="d-flex justify-content-center gap-3 mt-5">
+        <div className="d-flex justify-content-center gap-3 mt-2 mb-4">
 
           <button
             className="btn btn-outline-primary px-4 rounded-pill"
